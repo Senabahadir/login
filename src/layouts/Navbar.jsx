@@ -4,7 +4,7 @@ import LoggedIn from './LoggedIn'
 import LoggedOut from './LoggedOut'
 
 export default function Navbar() {
-  const [isAuthenticated, setIsAuthenticated] = useState(true)
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
 
   function handleLoggedOut(params) {
     setIsAuthenticated(false)
