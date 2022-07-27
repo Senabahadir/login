@@ -1,26 +1,31 @@
-import React from 'react'
-import { Menu, Segment } from 'semantic-ui-react'
+import React, {useState} from 'react'
+import { Menu, Container } from 'semantic-ui-react'
+import LoggedIn from './LoggedIn'
+import LoggedOut from './LoggedOut'
 
 export default function Navbar() {
+  const [isAuthenticated, setIsAuthenticated] = useState(true)
+
+  function handleLoggedOut(params) {
+    setIsAuthenticated(false)
+  }
+
+  function handleLoggedIn(params) {
+    setIsAuthenticated(true)
+  }
+
   return (
-    <Segment inverted>
-    <Menu inverted pointing secondary>
-      <Menu.Item
-        name='home'
-        // active={activeItem === 'home'}
-        // onClick={this.handleItemClick}
-      />
-      <Menu.Item
-        name='messages'
-        // active={activeItem === 'messages'}
-        // onClick={this.handleItemClick}
-      />
-      <Menu.Item
-        name='friends'
-        // active={activeItem === 'friends'}
-        // onClick={this.handleItemClick}
-      />
-    </Menu>
-  </Segment>
+    <Menu inverted fixed="top">
+    <Container>
+        <Menu.Item name='Home'/>
+
+        <Menu.Menu position='right'>
+
+          {isAuthenticated?<LoggedIn loginOut={handleLoggedOut} bişey="1" />
+          :<LoggedOut loginIn={handleLoggedIn} />}
+            
+        </Menu.Menu>
+    </Container>
+</Menu>
   )
 }
